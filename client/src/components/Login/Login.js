@@ -30,14 +30,14 @@ class Login extends React.Component {
 
  axios.post('/api/auth/login', { email, password })
       .then((result) => {
-        localStorage.setItem('jwtToken', result.data.token);
-        console.log("MY TOKEN", result.data.token)
+        sessionStorage.setItem('jwtToken', result.data.token);
+        sessionStorage.setItem('email', email);
         this.setState({ message: '' });
 //        this.props.history.push('/')
       })
       .catch((error) => {
         if(error.response.status === 401) {
-          this.setState({ message: 'Login failed. email or password not match' });
+          this.setState({ message: 'Login failed. Email or password not match' });
         }
       });
   }
@@ -61,6 +61,7 @@ class Login extends React.Component {
           id="email" type="text" 
           name="email" 
           />
+
 
 	        <div className="form-group"></div>
 

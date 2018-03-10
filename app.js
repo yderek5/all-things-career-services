@@ -10,7 +10,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 
 
-mongoose.connect('mongodb://admin:seth@ds147668.mlab.com:47668/leadershiplearning');
+mongoose.connect('mongodb://admin:admin@ds153609.mlab.com:53609/leadershiplearningseries');
 
 var index = require('./routes/index');
 var auth = require('./routes/auth');

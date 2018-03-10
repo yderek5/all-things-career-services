@@ -3,7 +3,11 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 
 var UserSchema = new Schema({
-  username: {
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
         type: String,
         unique: true,
         required: true
@@ -11,7 +15,16 @@ var UserSchema = new Schema({
   password: {
         type: String,
         required: true
-    }
+    },
+  confirmPassword: {
+        type: String,
+        required: true
+    },
+  mail: {
+        type: Boolean,
+        required: false
+    }    
+
 });
 
 UserSchema.pre('save', function (next) {
