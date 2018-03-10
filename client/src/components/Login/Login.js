@@ -53,20 +53,30 @@ class Login extends React.Component {
               { message }
             </div>
           }
-	        <h1> Login</h1>
 	        <div className="form-group"></div>
-	        <label htmlFor="email">Email:</label>
+          <TextField
+          floatingLabelText="Email"
+          fullWidth
+          onChange={this.onChange} 
+          id="email" type="text" 
+          name="email" 
+          />
 
-	        <input onChange={this.onChange} id="email" type="text" placeholder="Enter email" name="email" className="form-control" />
 
 	        <div className="form-group"></div>
-	        <label htmlFor="password">Password:</label>
 
-	        <input onChange={this.onChange} id="password" type="password" placeholder="Enter Password" name="password" className="form-control" />
+          <TextField
+          floatingLabelText="Password"
+          fullWidth
+          onChange={this.onChange} 
+          id="password" 
+          type="password" 
+          name="password" 
+          />
 
 	        <div className="form-group"></div>
 	        <br />
-	        <button type="submit" className="btn btn-primary">LogIn</button>
+	        <RaisedButton type="submit" onSubmit={this.onSubmit}>Log in</RaisedButton>
 	        </form>
 	    )
     }
