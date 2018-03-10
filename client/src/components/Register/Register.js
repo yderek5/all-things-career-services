@@ -35,7 +35,6 @@ class Register extends React.Component {
         this.state = {
             name: '',
             email: '',
-            username: '',
             password: '',
             confirmPassword: '',
             mail: ''
@@ -51,11 +50,11 @@ class Register extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const {name, email, username, password, confirmPassword, mail} = this.state;
+        const {name, email, password, confirmPassword, mail} = this.state;
         console.log(this.state);
 
         axios.post('/users/register', 
-        {name, email, username, password, confirmPassword, mail})
+        {name, email, password, confirmPassword, mail})
         .then(res => {
             res.json();
         })

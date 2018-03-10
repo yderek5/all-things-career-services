@@ -9,7 +9,7 @@ class Login extends React.Component {
 	constructor() {
         super();
         this.state = {
-            username: '',
+            email: '',
             password: '',
             message: ''            
         }
@@ -25,26 +25,26 @@ class Login extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const {username, password} = this.state;
+        const {email, password} = this.state;
         console.log(this.state);
 
- axios.post('/api/auth/login', { username, password })
+ axios.post('/api/auth/login', { email, password })
       .then((result) => {
-        localStorage.setItem('jwtToken', result.data.token);
-        console.log("MY TOKEN", result.data.token)
+        sessionStorage.setItem('jwtToken', result.data.token);
+        sessionStorage.setItem('email', email);
         this.setState({ message: '' });
 //        this.props.history.push('/')
       })
       .catch((error) => {
         if(error.response.status === 401) {
-          this.setState({ message: 'Login failed. Username or password not match' });
+          this.setState({ message: 'Login failed. Email or password not match' });
         }
       });
   }
     
 
     render() {
-  const { username, password, message } = this.state;        
+  const { email, password, message } = this.state;        
     	return(
 	        <form onSubmit={this.onSubmit} className="container">
 
@@ -55,9 +55,9 @@ class Login extends React.Component {
           }
 	        <h1> Login</h1>
 	        <div className="form-group"></div>
-	        <label htmlFor="username">Username:</label>
+	        <label htmlFor="email">Email:</label>
 
-	        <input onChange={this.onChange} id="username" type="text" placeholder="Enter Username" name="username" className="form-control" />
+	        <input onChange={this.onChange} id="email" type="text" placeholder="Enter email" name="email" className="form-control" />
 
 	        <div className="form-group"></div>
 	        <label htmlFor="password">Password:</label>
