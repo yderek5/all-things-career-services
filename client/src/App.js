@@ -25,7 +25,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 class App extends Component {
 
   componentDidMount() {
-    axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+    axios.defaults.headers.common['Authorization'] = sessionStorage.getItem('jwtToken');
   }
 
   render() {
