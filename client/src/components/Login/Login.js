@@ -9,7 +9,7 @@ class Login extends React.Component {
 	constructor() {
         super();
         this.state = {
-            username: '',
+            email: '',
             password: '',
             message: ''            
         }
@@ -25,10 +25,10 @@ class Login extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const {username, password} = this.state;
+        const {email, password} = this.state;
         console.log(this.state);
 
- axios.post('/api/auth/login', { username, password })
+ axios.post('/api/auth/login', { email, password })
       .then((result) => {
         localStorage.setItem('jwtToken', result.data.token);
         console.log("MY TOKEN", result.data.token)
@@ -37,14 +37,14 @@ class Login extends React.Component {
       })
       .catch((error) => {
         if(error.response.status === 401) {
-          this.setState({ message: 'Login failed. Username or password not match' });
+          this.setState({ message: 'Login failed. email or password not match' });
         }
       });
   }
     
 
     render() {
-  const { username, password, message } = this.state;        
+  const { email, password, message } = this.state;        
     	return(
 	        <form onSubmit={this.onSubmit} className="container">
 
@@ -53,20 +53,29 @@ class Login extends React.Component {
               { message }
             </div>
           }
-	        <h1> Login</h1>
 	        <div className="form-group"></div>
-	        <label htmlFor="username">Username:</label>
-
-	        <input onChange={this.onChange} id="username" type="text" placeholder="Enter Username" name="username" className="form-control" />
+          <TextField
+          floatingLabelText="Email"
+          fullWidth
+          onChange={this.onChange} 
+          id="email" type="text" 
+          name="email" 
+          />
 
 	        <div className="form-group"></div>
-	        <label htmlFor="password">Password:</label>
 
-	        <input onChange={this.onChange} id="password" type="password" placeholder="Enter Password" name="password" className="form-control" />
+          <TextField
+          floatingLabelText="Password"
+          fullWidth
+          onChange={this.onChange} 
+          id="password" 
+          type="password" 
+          name="password" 
+          />
 
 	        <div className="form-group"></div>
 	        <br />
-	        <button type="submit" className="btn btn-primary">LogIn</button>
+	        <RaisedButton type="submit" onSubmit={this.onSubmit}>Log in</RaisedButton>
 	        </form>
 	    )
     }

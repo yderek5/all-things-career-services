@@ -65,7 +65,6 @@ class Register extends React.Component {
     render() {
         return(
         <form onSubmit={this.onSubmit} className="container">
-        <p> Please Register using the form below</p>
         <div className="form-group"></div>
         <TextField
         floatingLabelText="Name"
@@ -108,7 +107,7 @@ class Register extends React.Component {
          defaultToggled={true}
          style={styles.toggle}
         />
-        <button type="submit" className="btn btn-primary">Register</button>
+        <RaisedButton onSubmit={this.onSubmit} type="submit">Register</RaisedButton>
         </form>
         );
     }
